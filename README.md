@@ -17,3 +17,4 @@ Learning objectives:
 ## Authors
 
 - [@EugeneOYZ1203n](https://github.com/EugeneOYZ1203n)
+- [@Just-Chocomint](https://github.com/Just-Chocomint)
