@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://crcblqhwh30sl"]
+
+[ext_resource type="Texture2D" uid="uid://dhuisp1bpqq6d" path="res://0_assets/square.png" id="1_iys6f"]
+[ext_resource type="Script" path="res://5_misc/next_level_area.gd" id="1_wy7pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx133"]
+size = Vector2(32, 32)
+
+[node name="NextLevelArea" type="Area2D"]
+script = ExtResource("1_wy7pg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.713726, 0, 1)
+z_index = -5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_iys6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nx133")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
