@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7qj0e18xe3u7"]
+[gd_scene load_steps=6 format=3 uid="uid://b7qj0e18xe3u7"]
 
 [ext_resource type="Texture2D" uid="uid://dhuisp1bpqq6d" path="res://0_assets/square.png" id="1_8q421"]
 [ext_resource type="Script" path="res://3_player/player.gd" id="1_m0xd7"]
+[ext_resource type="Script" path="res://3_player/movement/movement_manager.gd" id="3_e864a"]
+[ext_resource type="Script" path="res://3_player/movement/idle_state.gd" id="4_03tx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0olux"]
 size = Vector2(64, 64)
@@ -16,3 +18,12 @@ texture = ExtResource("1_8q421")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0olux")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("state", "player_body")]
+script = ExtResource("3_e864a")
+state = NodePath("Move state")
+player_body = NodePath("..")
+
+[node name="Move state" type="Node" parent="Movement" node_paths=PackedStringArray("manager")]
+script = ExtResource("4_03tx8")
+manager = NodePath("..")
