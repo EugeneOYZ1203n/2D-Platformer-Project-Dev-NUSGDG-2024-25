@@ -14,5 +14,6 @@ func _ready() -> void:
 
 func go_to_level(index):
 	root.remove_child(curr)
+	curr.queue_free()
 	curr = load(levels[index]).instantiate()
 	root.add_child(curr)
