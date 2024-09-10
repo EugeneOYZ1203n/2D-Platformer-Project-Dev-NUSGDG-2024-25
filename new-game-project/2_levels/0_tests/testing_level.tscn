@@ -7,20 +7,16 @@
 [node name="TestingLvl" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lrhnv")]
-position = Vector2(288, 224)
-
-[node name="BasicPlatform" parent="." instance=ExtResource("2_gbkqp")]
-position = Vector2(1088, 704)
-scale = Vector2(5, 12)
-
-[node name="BasicPlatform2" parent="." instance=ExtResource("2_gbkqp")]
-position = Vector2(608, 576)
-scale = Vector2(7, 14)
+position = Vector2(234, 532)
 
 [node name="BasicPlatform3" parent="." instance=ExtResource("2_gbkqp")]
-position = Vector2(256, 608)
-scale = Vector2(10, 19)
+position = Vector2(601, 727)
+scale = Vector2(44.9183, 3.14614)
+
+[node name="BasicPlatform4" parent="." instance=ExtResource("2_gbkqp")]
+position = Vector2(1068, 487)
+scale = Vector2(9.98176, 2.6082)
 
 [node name="NextLevelArea" parent="." instance=ExtResource("3_ct3uk")]
-position = Vector2(1088, 448)
+position = Vector2(1117, 244)
 nxt_level = 2

@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7qj0e18xe3u7"]
+[gd_scene load_steps=9 format=3 uid="uid://b7qj0e18xe3u7"]
 
 [ext_resource type="Texture2D" uid="uid://dhuisp1bpqq6d" path="res://0_assets/square.png" id="1_8q421"]
 [ext_resource type="Script" path="res://3_player/player.gd" id="1_m0xd7"]
+[ext_resource type="Script" path="res://3_player/components/move_state_machine.gd" id="3_e864a"]
+[ext_resource type="Script" path="res://3_player/components/input_handler.gd" id="4_gtc6g"]
+[ext_resource type="Script" path="res://3_player/move_states/ground_state.gd" id="4_sb8uy"]
+[ext_resource type="Script" path="res://3_player/move_states/air_state.gd" id="5_wsf8h"]
+[ext_resource type="Script" path="res://3_player/move_states/jump_state.gd" id="6_14oh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0olux"]
 size = Vector2(64, 64)
@@ -16,3 +21,23 @@ texture = ExtResource("1_8q421")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0olux")
+
+[node name="MovementSM" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player_body", "input_handler")]
+script = ExtResource("3_e864a")
+initial_state = NodePath("Ground")
+player_body = NodePath("..")
+input_handler = NodePath("../InputHandler")
+
+[node name="Ground" type="Node" parent="MovementSM"]
+script = ExtResource("4_sb8uy")
+
+[node name="Air" type="Node" parent="MovementSM"]
+script = ExtResource("5_wsf8h")
+
+[node name="Jump" type="Node" parent="MovementSM"]
+script = ExtResource("6_14oh4")
+JUMP_HEIGHT = 250
+
+[node name="InputHandler" type="Node" parent="." node_paths=PackedStringArray("player_body")]
+script = ExtResource("4_gtc6g")
+player_body = NodePath("..")
