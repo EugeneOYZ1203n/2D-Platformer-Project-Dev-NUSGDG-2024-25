@@ -30,13 +30,20 @@ input_handler = NodePath("../InputHandler")
 
 [node name="Ground" type="Node" parent="MovementSM"]
 script = ExtResource("4_sb8uy")
+TARGET_MOVE_SPEED = 550
+IDLE_FRICTION_LOSS_MULT = 1.5
 
 [node name="Air" type="Node" parent="MovementSM"]
 script = ExtResource("5_wsf8h")
+AIR_GRAVITY = 4000
+FALL_AIR_GRAVITY = 4500
+TARGET_MOVE_SPEED = 550
+IDLE_FRICTION_LOSS_MULT = 1.5
 
 [node name="Jump" type="Node" parent="MovementSM"]
 script = ExtResource("6_14oh4")
 JUMP_HEIGHT = 250
+AIR_GRAVITY = 4000
 
 [node name="InputHandler" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 script = ExtResource("4_gtc6g")
