@@ -12,21 +12,27 @@ const DIRECTION_CHANGE_BUFFER := 0.1
 const JUMP_BUFFER := 0.1
 const DROP_BUFFER := 0.1
 const DASH_BUFFER := 0.1
+const GRAB_BUFFER := 0.1
 
 var direction := 0
+var omniDirection := Vector2.ZERO
 var timeSinceDirectionChange := -DIRECTION_CHANGE_BUFFER*1000
 @onready var timeSinceJump := -JUMP_BUFFER*1000
 @onready var timeSinceDrop := -DROP_BUFFER*1000
 @onready var timeSinceDash := -DASH_BUFFER*1000
-
+@onready var timeSinceGrab := -GRAB_BUFFER*1000
 
 func handle_inputs():
 	var newDirection = Input.get_axis("move_left", "move_right")
 	if direction != newDirection:
 		timeSinceDirectionChange = Time.get_ticks_msec()
 	direction = newDirection
+	omniDirection = Vector2(
+		direction,
+		Input.get_axis("move_up", "move_down")
+	)
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("move_jump"):
 		timeSinceJump = Time.get_ticks_msec()
 	
 	if Input.is_action_just_pressed("move_down"):
@@ -34,6 +40,9 @@ func handle_inputs():
 	
 	if Input.is_action_just_pressed("move_dash"):
 		timeSinceDash = Time.get_ticks_msec()
+	
+	if Input.is_action_just_pressed("move_grab"):
+		timeSinceGrab = Time.get_ticks_msec()
 
 ## Physics -------------------------------------------------------------------
 const COYOTE_TIME := 0.2
@@ -54,9 +63,17 @@ func handle_physics():
 func getDirection() -> int:
 	return direction
 
+func getOmniDirection() -> Vector2:
+	return omniDirection
+
 func justChangedDirection() -> bool:
 	return (timeSinceDirectionChange + 
 			DIRECTION_CHANGE_BUFFER*1000 
+			> Time.get_ticks_msec())
+
+func justDropped() -> bool:
+	return (timeSinceDrop + 
+			DROP_BUFFER*1000 
 			> Time.get_ticks_msec())
 
 func justJumped() -> bool:
@@ -64,10 +81,15 @@ func justJumped() -> bool:
 			JUMP_BUFFER*1000 
 			> Time.get_ticks_msec())
 
-func resetJumpTimers() -> void:
-	playerJumped = true
-	timeSinceJump = -JUMP_BUFFER*1000
-	timeSinceGrounded = -COYOTE_TIME*1000
+func justDashed() -> bool:
+	return (timeSinceDash + 
+			DASH_BUFFER*1000 
+			> Time.get_ticks_msec())
+
+func justGrabbed() -> bool:
+	return (timeSinceGrab + 
+			GRAB_BUFFER*1000 
+			> Time.get_ticks_msec())
 
 func isGrounded() -> bool:
 	return player_body.is_on_floor()
@@ -76,3 +98,8 @@ func isCoyoteTime() -> bool:
 	return (timeSinceGrounded + 
 			COYOTE_TIME * 1000 > 
 			Time.get_ticks_msec())
+
+func resetJumpTimers() -> void:
+	playerJumped = true
+	timeSinceJump = -JUMP_BUFFER*1000
+	timeSinceGrounded = -COYOTE_TIME*1000
