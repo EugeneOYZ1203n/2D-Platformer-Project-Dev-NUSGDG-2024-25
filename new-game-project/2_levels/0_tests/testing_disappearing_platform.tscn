@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bycybrgvrdpnk"]
+
+[ext_resource type="PackedScene" uid="uid://b7qj0e18xe3u7" path="res://3_player/player.tscn" id="1_mcunx"]
+[ext_resource type="PackedScene" uid="uid://dua8am8am2p6g" path="res://4_obstacles/basic_platform.tscn" id="2_hiog3"]
+[ext_resource type="PackedScene" uid="uid://crcblqhwh30sl" path="res://5_misc/next_level_area.tscn" id="3_tshtf"]
+[ext_resource type="PackedScene" uid="uid://bu3qids707bkt" path="res://4_obstacles/disappearing_platform.tscn" id="4_nrs5t"]
+
+[node name="TestingLvl" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_mcunx")]
+position = Vector2(234, 532)
+
+[node name="BasicPlatform3" parent="." instance=ExtResource("2_hiog3")]
+position = Vector2(601, 727)
+scale = Vector2(44.9183, 3.14614)
+
+[node name="NextLevelArea" parent="." instance=ExtResource("3_tshtf")]
+position = Vector2(1117, 244)
+nxt_level = 2
+
+[node name="DisappearingPlatform" parent="." instance=ExtResource("4_nrs5t")]
+position = Vector2(800, 500)
+scale = Vector2(20, 3)
