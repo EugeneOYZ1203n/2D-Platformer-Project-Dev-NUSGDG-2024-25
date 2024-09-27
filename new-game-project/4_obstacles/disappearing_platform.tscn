@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu3qids707bkt"]
+
+[ext_resource type="Script" path="res://4_obstacles/disappearing_platform.gd" id="1_sip14"]
+[ext_resource type="Texture2D" uid="uid://dhuisp1bpqq6d" path="res://0_assets/square.png" id="2_nfl4b"]
+[ext_resource type="Script" path="res://4_obstacles/disappearing_platform_sprite.gd" id="3_pwpv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yttc8"]
+size = Vector2(128, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfm6j"]
+size = Vector2(17.3485, 1.24393)
+
+[node name="DisappearingPlatform" type="StaticBody2D" node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("1_sip14")
+collision_shape = NodePath("CollisionShape2D")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nfl4b")
+script = ExtResource("3_pwpv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yttc8")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(6.56, 6.36)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.89968e-06, -10.6918)
+scale = Vector2(1.12472, 1.01122)
+shape = SubResource("RectangleShape2D_dfm6j")
+
+[connection signal="on_aesthetic_appear" from="." to="Sprite2D" method="_on_disappearing_platform_on_aesthetic_appear"]
+[connection signal="on_aesthetic_disappear" from="." to="Sprite2D" method="_on_disappearing_platform_on_aesthetic_disappear"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
