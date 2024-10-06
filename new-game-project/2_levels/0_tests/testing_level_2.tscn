@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqdg6qa48nf0w"]
+[gd_scene load_steps=5 format=3 uid="uid://cqdg6qa48nf0w"]
 
 [ext_resource type="PackedScene" uid="uid://b7qj0e18xe3u7" path="res://3_player/player.tscn" id="1_d80my"]
-[ext_resource type="PackedScene" uid="uid://dua8am8am2p6g" path="res://4_obstacles/basic_platform.tscn" id="2_o2qud"]
+[ext_resource type="PackedScene" uid="uid://dua8am8am2p6g" path="res://4_obstacles/Platforms/basic_platform.tscn" id="2_o2qud"]
 [ext_resource type="PackedScene" uid="uid://crcblqhwh30sl" path="res://5_misc/next_level_area.tscn" id="3_kiu24"]
+[ext_resource type="PackedScene" uid="uid://bka1sgkkwya73" path="res://4_obstacles/Hazards/hazard_area.tscn" id="4_roa2o"]
 
 [node name="TestingLvl" type="Node2D"]
 
@@ -23,3 +24,7 @@ scale = Vector2(10, 19)
 
 [node name="NextLevelArea" parent="." instance=ExtResource("3_kiu24")]
 position = Vector2(1152, 352)
+
+[node name="HazardArea" parent="." instance=ExtResource("4_roa2o")]
+position = Vector2(768, 1056)
+scale = Vector2(-59.562, 5)
