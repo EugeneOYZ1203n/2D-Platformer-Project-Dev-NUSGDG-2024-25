@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu3qids707bkt"]
 
-[ext_resource type="Script" path="res://4_obstacles/disappearing_platform.gd" id="1_sip14"]
+[ext_resource type="Script" path="res://4_obstacles/Platforms/disappearing_platform.gd" id="1_sip14"]
 [ext_resource type="Texture2D" uid="uid://dhuisp1bpqq6d" path="res://0_assets/square.png" id="2_nfl4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yttc8"]
